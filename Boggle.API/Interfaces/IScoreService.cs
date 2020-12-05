@@ -7,6 +7,6 @@ namespace Boggle.API.Interfaces
     {
         int CalculateSingleScore(List<string> words);
 
-        List<Player> CalculateMultiplayerScore(List<Player> players);
+        List<Player> CalculateMultiPlayerScore(List<Player> players);
     }
 }

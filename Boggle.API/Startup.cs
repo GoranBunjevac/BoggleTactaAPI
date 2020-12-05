@@ -26,6 +26,8 @@ namespace Boggle.API
 
             services.AddScoped<IScoreService, ScoreService>();
 
+            services.AddScoped<IBoardService, BoardService>();
+
             // Register the Swagger Generator service. This service is responsible for genrating Swagger Documents.
             services.AddSwaggerGen(options =>
             {

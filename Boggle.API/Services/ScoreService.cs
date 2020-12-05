@@ -36,7 +36,7 @@ namespace Boggle.API.Services
         /// </summary>
         /// <param name="players"></param>
         /// <returns>List of player objects.</returns>
-        public List<Player> CalculateMultiplayerScore(List<Player> players)
+        public List<Player> CalculateMultiPlayerScore(List<Player> players)
         {
             if (players == null)
             {

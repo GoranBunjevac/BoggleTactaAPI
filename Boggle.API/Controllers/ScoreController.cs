@@ -6,15 +6,24 @@ namespace Boggle.API.Controllers
 {
     [Route("[controller]")]
     [ApiController]
-    public class ScoresController : ControllerBase
+    public class ScoreController : ControllerBase
     {
         private IScoreService _scoreService;
 
-        public ScoresController(IScoreService scoreService)
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <param name="scoreService"></param>
+        public ScoreController(IScoreService scoreService)
         {
             _scoreService = scoreService;
         }
 
+        /// <summary>
+        /// Get Scores.
+        /// </summary>
+        /// <param name="words"></param>
+        /// <returns></returns>
         [HttpGet]
         public int Get([FromQuery]List<string> words)
         {
