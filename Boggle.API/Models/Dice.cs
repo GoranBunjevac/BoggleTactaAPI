@@ -2,14 +2,14 @@
 {
     public class Dice
     {
-        public int X { get; set; }
-        public int Y { get; set; }
+        public int XPosition { get; set; }
+        public int YPosition { get; set; }
         public string Letter { get; set; }
 
-        public Dice(int x, int y, string letter)
+        public Dice(int xPosition, int yPosition, string letter)
         {
-            X = x;
-            Y = y;
+            XPosition = xPosition;
+            YPosition = yPosition;
             Letter = letter;
         }
 

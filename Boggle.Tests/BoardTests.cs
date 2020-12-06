@@ -1,6 +1,8 @@
 ﻿using Boggle.API.Interfaces;
 using Boggle.API.Models;
 using Boggle.API.Services;
+using System.Collections.Generic;
+using System.Linq;
 using Xunit;
 
 namespace Boggle.Tests
@@ -12,9 +14,9 @@ namespace Boggle.Tests
         [Fact(DisplayName = "CreateBoard Check Board Size")]
         public void CreateBoardCheckBoardSize()
         {
-            Dice[] dices = boardService.CreateBoard();
+            var dices = boardService.CreateBoardAsync().Result.ToList();
             Assert.NotNull(dices);
-            Assert.True(dices.Length == 16);
+            Assert.True(dices.Count == 16);
         }
     }
 }

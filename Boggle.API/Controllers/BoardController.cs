@@ -1,6 +1,8 @@
 ﻿using Boggle.API.Interfaces;
 using Boggle.API.Models;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Boggle.API.Controllers
 {
@@ -24,9 +26,10 @@ namespace Boggle.API.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public Dice[] Get()
+        public async Task<IActionResult> Get()
         {
-            return _boardService.CreateBoard();
+            var result = await _boardService.CreateBoardAsync();
+            return Ok(result);
         }
     }
 }

@@ -3,6 +3,8 @@ using Boggle.API.Interfaces;
 using Boggle.API.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Boggle.API.Services
 {
@@ -12,7 +14,7 @@ namespace Boggle.API.Services
         /// Method to create board with 16 dices.
         /// </summary>
         /// <returns>Returns 16 dices.</returns>
-        public Dice[] CreateBoard()
+        public async Task<IEnumerable<Dice>> CreateBoardAsync()
         {
             List<Dice> dices = new List<Dice>();
             string[] letters = GenerateRandomLettersForDices();
@@ -25,7 +27,7 @@ namespace Boggle.API.Services
                     letterIndex++;
                 }
             }
-            return dices.ToArray();
+            return dices;
         }
 
         /// <summary>
