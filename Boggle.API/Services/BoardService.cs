@@ -42,9 +42,9 @@ namespace Boggle.API.Services
             Random random = new Random();
             for (int i = 0; i < numberOfDices; i++)
             {
-                int randomNumber = random.Next(0, 26);
-                char letter = (char)('a' + randomNumber);
-                dices[i] = letter.ToString();
+                string letter = ((char)random.Next('a', 'z')).ToString();
+                letter = letter.Replace("q", "qu");
+                dices[i] = letter.ToUpper();
             }
             
             return dices;
