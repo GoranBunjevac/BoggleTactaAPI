@@ -4,6 +4,7 @@ using Boggle.API.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Boggle.API.Services
 {
@@ -14,7 +15,7 @@ namespace Boggle.API.Services
         /// </summary>
         /// <param name="words"></param>
         /// <returns>Score represented in integer.</returns>
-        public int CalculateSingleScore(List<string> words)
+        public async Task<int> CalculateSingleScoreAsync(List<string> words)
         {
             if (words == null || words.Count == 0)
             {
@@ -36,7 +37,7 @@ namespace Boggle.API.Services
         /// </summary>
         /// <param name="players"></param>
         /// <returns>List of player objects.</returns>
-        public List<Player> CalculateMultiPlayerScore(List<Player> players)
+        public async Task<List<Player>> CalculateMultiPlayerScoreAsync(List<Player> players)
         {
             if (players == null)
             {
@@ -56,7 +57,7 @@ namespace Boggle.API.Services
                                                        .Where(w => !string.IsNullOrWhiteSpace(w) && uniqueWords.Any(n => w.Trim().ToLower() == n))
                                                        .ToList();
 
-                player.Score = CalculateSingleScore(playerUniqueWords);
+                player.Score = await CalculateSingleScoreAsync(playerUniqueWords);
             }
 
             return players;

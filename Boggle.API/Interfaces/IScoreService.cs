@@ -1,12 +1,13 @@
 ﻿using Boggle.API.Models;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Boggle.API.Interfaces
 {
     public interface IScoreService
     {
-        int CalculateSingleScore(List<string> words);
+        Task<int> CalculateSingleScoreAsync(List<string> words);
 
-        List<Player> CalculateMultiPlayerScore(List<Player> players);
+        Task<List<Player>> CalculateMultiPlayerScoreAsync(List<Player> players);
     }
 }

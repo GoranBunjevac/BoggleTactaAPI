@@ -1,6 +1,7 @@
 ﻿using Boggle.API.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Boggle.API.Controllers
 {
@@ -25,9 +26,9 @@ namespace Boggle.API.Controllers
         /// <param name="words"></param>
         /// <returns></returns>
         [HttpGet]
-        public int Get([FromQuery]List<string> words)
+        public async Task<int> Get([FromQuery]List<string> words)
         {
-            return _scoreService.CalculateSingleScore(words);
+            return await _scoreService.CalculateSingleScoreAsync(words);
         }
     }
 }

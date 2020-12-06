@@ -17,34 +17,34 @@ namespace Boggle.Tests
         #region Single Player Score Tests
 
         [Fact(DisplayName = "CalculateSingleScore Check If List Is Null")]
-        public void CalculateSingleScoreCheckIfListIsNull()
+        public async void CalculateSingleScoreCheckIfListIsNull()
         {
             List<string> words = null;
-            int score = scoreService.CalculateSingleScore(words);
+            int score = await scoreService.CalculateSingleScoreAsync(words);
             Assert.Equal(0, score);
         }
 
         [Fact(DisplayName = "CalculateSingleScore Check If Words List Is Empty")]
-        public void CalculateSingleScoreCheckIfWordsListIsEmpty()
+        public async void CalculateSingleScoreCheckIfWordsListIsEmpty()
         {
             List<string> words = new List<string>();
-            int score = scoreService.CalculateSingleScore(words);
+            int score = await scoreService.CalculateSingleScoreAsync(words);
             Assert.Equal(0, score);
         }
 
         [Fact(DisplayName = "CalculateSingleScore Check Points For Single PLayer")]
-        public void CalculateSingleScoreCheckPointsForSinglePlayer()
+        public async void CalculateSingleScoreCheckPointsForSinglePlayer()
         {
             List<string> words = MockData.Instance.GetSinglePlayerWords();
-            int score = scoreService.CalculateSingleScore(words);
+            int score = await scoreService.CalculateSingleScoreAsync(words);
             Assert.Equal(80, score);
         }
 
         [Fact(DisplayName = "CalculateSingleScore Check Points For Single Player With Duplicated Words")]
-        public void CalculateSingleScoreCheckPointsForSinglePlayerWithDuplicatedWords()
+        public async void CalculateSingleScoreCheckPointsForSinglePlayerWithDuplicatedWords()
         {
             List<string> words = MockData.Instance.GetSinglePlayerDuplicatedWords();
-            int score = scoreService.CalculateSingleScore(words);
+            int score = await scoreService.CalculateSingleScoreAsync(words);
             Assert.Equal(18, score);
         }
 
@@ -53,25 +53,25 @@ namespace Boggle.Tests
         #region Multi Player Score Tests
 
         [Fact(DisplayName = "CalculateMultiplayerScore If Players Are Null")]
-        public void CalculateMultiplayerScoreIfPlayersAreNull()
+        public async System.Threading.Tasks.Task CalculateMultiplayerScoreIfPlayersAreNull()
         {
             List<Player> player = null;
-            Assert.Throws<ArgumentNullException>(() => scoreService.CalculateMultiPlayerScore(player));
+            await Assert.ThrowsAsync<ArgumentNullException>(() => scoreService.CalculateMultiPlayerScoreAsync(player));
         }
 
         [Fact(DisplayName = "CalculateMultiplayerScore If Player List Is Empty")]
-        public void CalculateMultiplayerScoreIfPlayerListIsEmpty()
+        public async void CalculateMultiplayerScoreIfPlayerListIsEmpty()
         {
             List<Player> players = new List<Player>();
-            List<Player> playersWithScores = scoreService.CalculateMultiPlayerScore(players);
+            List<Player> playersWithScores = await scoreService.CalculateMultiPlayerScoreAsync(players);
             Assert.Equal(players, playersWithScores);
         }
 
         [Fact(DisplayName = "CalculateMultiplayerScore Check Points For Multiplayer")]
-        public void CalculateMultiplayerScore()
+        public async void CalculateMultiplayerScore()
         {
             List<Player> players = MockData.Instance.CreateMultiPlayerWords();
-            List<Player> score = scoreService.CalculateMultiPlayerScore(players);
+            List<Player> score = await scoreService.CalculateMultiPlayerScoreAsync(players);
             Assert.True(players.Where(x => x.Id == 1).First().Score == 2);
             Assert.True(players.Where(x => x.Id == 2).First().Score == 40);
             Assert.True(players.Where(x => x.Id == 3).First().Score == 25);
