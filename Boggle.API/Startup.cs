@@ -23,11 +23,15 @@ namespace Boggle.API
         {
             services.AddCors();
 
+            services.ConfigureLoggerService();
+
             services.AddControllers();
 
             services.AddScoped<IScoreService, ScoreService>();
 
             services.AddScoped<IBoardService, BoardService>();
+
+            services.AddScoped<ILoggerService, LoggerService>();
 
             services.ConfigureSwagger();
         }

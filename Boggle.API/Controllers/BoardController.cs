@@ -11,14 +11,16 @@ namespace Boggle.API.Controllers
     public class BoardController : ControllerBase
     {
         private IBoardService _boardService;
+        private readonly ILoggerService _logger;
 
         /// <summary>
         /// Constructor.
         /// </summary>
         /// <param name="boardService"></param>
-        public BoardController(IBoardService boardService)
+        public BoardController(IBoardService boardService, ILoggerService logger)
         {
             _boardService = boardService;
+            _logger = logger;
         }
 
         /// <summary>
@@ -28,6 +30,8 @@ namespace Boggle.API.Controllers
         [HttpGet]
         public async Task<IActionResult> Get()
         {
+            _logger.LogInfo("Get board data");
+
             var result = await _boardService.CreateBoardAsync();
             return Ok(result);
         }

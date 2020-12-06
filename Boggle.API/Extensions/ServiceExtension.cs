@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Boggle.API.Interfaces;
+using Boggle.API.Services;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 
 namespace Boggle.API.Extensions
@@ -16,6 +18,11 @@ namespace Boggle.API.Extensions
                     Version = "v1"
                 });
             });
+        }
+
+        public static void ConfigureLoggerService(this IServiceCollection services)
+        {
+            services.AddSingleton<ILoggerService, LoggerService>();
         }
     }
 }
