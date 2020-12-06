@@ -1,3 +1,4 @@
+using Boggle.API.Extensions;
 using Boggle.API.Interfaces;
 using Boggle.API.Services;
 using Microsoft.AspNetCore.Builder;
@@ -5,8 +6,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.OpenApi.Models;
-using System;
 
 namespace Boggle.API
 {
@@ -30,15 +29,7 @@ namespace Boggle.API
 
             services.AddScoped<IBoardService, BoardService>();
 
-            // Register the Swagger Generator service. This service is responsible for genrating Swagger Documents.
-            services.AddSwaggerGen(options =>
-            {
-                options.SwaggerDoc("v1", new OpenApiInfo
-                {
-                    Title = "Swagger Boggle API",
-                    Version = "v1"
-                });
-            });
+            services.ConfigureSwagger();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
